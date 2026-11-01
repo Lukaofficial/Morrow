@@ -1,0 +1,24 @@
+.page {
+  background: var(--mint);
+  color: var(--ink);
+  padding-bottom: clamp(48px, 7vw, 112px);
+  min-height: 72svh;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 72px);
+  padding-top: clamp(8px, 2vw, 28px);
+  align-items: end;
+}
+
+.title {
+  font-size: clamp(64px, 11vw, 176px);
+}
+
+@media (max-width: 860px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}

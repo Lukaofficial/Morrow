@@ -1,0 +1,44 @@
+.controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 2px;
+  transition: opacity 0.15s;
+}
+
+.controls[data-pending] {
+  opacity: 0.5;
+}
+
+.button {
+  padding: 4px 10px 5px;
+  background: rgb(246 241 229 / 0.12);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+  --focus: var(--butter);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--butter);
+  color: var(--ink);
+}
+
+.cancel:hover:not(:disabled) {
+  background: var(--tomato);
+}
+
+.gone {
+  font-size: 15px;
+  color: rgb(246 241 229 / 0.6);
+}
+
+.error {
+  font-size: 14px;
+  color: var(--coral);
+  align-self: center;
+  padding-left: 6px;
+}

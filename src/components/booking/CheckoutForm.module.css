@@ -1,0 +1,297 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+
+.form {
+  display: grid;
+  gap: clamp(20px, 2.2vw, 30px);
+  max-width: 660px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.1;
+  padding: 0;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 0 8px;
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid var(--ink);
+  border-radius: 0;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.1;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-bottom-color: var(--tomato);
+}
+
+.field[data-invalid] .input {
+  border-bottom-color: #c8300b;
+}
+
+.help {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.segment {
+  position: relative;
+  padding: 8px 16px 9px;
+  background: rgb(15 17 48 / 0.1);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.segment:hover {
+  background: rgb(15 17 48 / 0.2);
+}
+
+.segment[data-selected] {
+  background: var(--ink);
+  color: var(--butter);
+}
+
+.segment input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segment:has(input:focus-visible) {
+  outline: 3px solid var(--ultra);
+  outline-offset: 2px;
+}
+
+.check {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: start;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1.32;
+}
+
+.check input {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.box {
+  width: 30px;
+  height: 30px;
+  box-shadow: inset 0 0 0 3px var(--ink);
+  transition: background 0.1s;
+}
+
+.check input:checked + .box {
+  background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13l5 5 9-11' fill='none' stroke='%23ffcf4d' stroke-width='3.4'/%3E%3C/svg%3E") center / 22px no-repeat;
+}
+
+.check input:focus-visible + .box {
+  outline: 3px solid var(--ultra);
+  outline-offset: 2px;
+}
+
+.error {
+  padding: 10px 14px;
+  background: #c8300b;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+.confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px clamp(16px, 2vw, 28px) 13px;
+  background: var(--ink);
+  color: var(--butter);
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1;
+  transition: background 0.16s, color 0.16s;
+}
+
+.confirm svg {
+  width: 38px;
+  transition: transform 0.3s var(--ease);
+}
+
+.confirm:hover:not(:disabled) {
+  background: var(--tomato);
+  color: var(--ink);
+}
+
+.confirm:hover:not(:disabled) svg {
+  transform: translateX(5px);
+}
+
+.confirm:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.release {
+  font-size: 16px;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.notice {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.ticket {
+  position: sticky;
+  top: 20px;
+  background: var(--paper);
+  padding: clamp(16px, 2vw, 28px);
+  /* Punched out either side, where a conductor's clip would go. */
+  mask: radial-gradient(circle 10px at 0 62%, transparent 98%, #000) left, radial-gradient(circle 10px at 100% 62%, transparent 98%, #000) right;
+  mask-size: 51% 100%;
+  mask-repeat: no-repeat;
+}
+
+.countdown {
+  --tile-h: clamp(40px, 4.4vw, 62px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.countdownLabel {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.05;
+}
+
+.ticketLine {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.leg {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.legClock {
+  font-size: clamp(46px, 4.6vw, 70px);
+  min-width: 2.1em;
+}
+
+.legCity {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.legDetail {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.items {
+  border-top: 2px dashed rgb(15 17 48 / 0.4);
+  margin-top: 14px;
+  padding-top: 12px;
+  display: grid;
+  gap: 5px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 14px;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.totalAmount {
+  font-size: clamp(46px, 4.6vw, 70px);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket {
+    position: static;
+    grid-row: 1;
+  }
+}

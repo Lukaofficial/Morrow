@@ -1,0 +1,266 @@
+.hero {
+  position: relative;
+  min-height: max(100svh, 760px);
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  background: var(--tomato);
+  overflow: clip;
+  --focus: var(--ink);
+}
+
+/* Hard bands, like a screenprint run with five inks. */
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #ff4620 0 34%,
+    #ff5525 34% 47%,
+    #ff6a2d 47% 58%,
+    #ff8338 58% 67%,
+    #ff9f45 67% 75%,
+    #ffbc4f 75% 100%
+  );
+}
+
+.scene {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 58%;
+}
+
+.board {
+  /* A phrase and ten tiles come to about 12.5 tile-heights across. */
+  --tile-h: clamp(46px, 7.1vw, 112px);
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding: clamp(18px, 3vh, 44px) var(--gutter) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.line {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(12px, 2vw, 32px);
+}
+
+.phrase {
+  font-size: calc(var(--tile-h) * 1.32);
+  white-space: nowrap;
+  line-height: 0.8;
+  padding-top: 0.06em;
+}
+
+.cityButton {
+  display: block;
+  text-align: left;
+  line-height: 0;
+  border-radius: 4px;
+  transition: transform 0.25s var(--ease);
+  filter: drop-shadow(0 3px 0 rgb(15 17 48 / 0.28));
+}
+
+.cityButton:hover {
+  transform: translateY(-2px);
+}
+
+.picker {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 20;
+  width: min(100%, 760px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  background: var(--tile);
+  box-shadow: 0 0 0 1px #33334a, 0 24px 0 -12px rgb(15 17 48 / 0.3);
+  animation: drop 0.22s var(--ease);
+  --focus: var(--butter);
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.option {
+  display: grid;
+  text-align: left;
+  padding: 10px 12px 11px;
+  background: var(--tile);
+  color: #f4efe2;
+  box-shadow: 0 0 0 0.5px #33334a;
+  transition: background 0.12s;
+}
+
+.option:hover,
+.option:focus-visible,
+.option[aria-selected="true"] {
+  background: var(--butter);
+  color: var(--ink);
+  outline: none;
+}
+
+.optionCity {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.1;
+}
+
+.optionCountry {
+  font-size: 13px;
+  line-height: 1.2;
+  opacity: 0.62;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: clamp(8px, 1vw, 14px);
+  margin-top: clamp(4px, 1vh, 12px);
+  flex-wrap: wrap;
+}
+
+.nights {
+  display: flex;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+  min-width: 0;
+}
+
+.night {
+  position: relative;
+  display: grid;
+  align-content: center;
+  padding: 8px clamp(8px, 1vw, 16px);
+  min-width: clamp(54px, 5.4vw, 88px);
+  background: var(--tile);
+  color: #f4efe2;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+}
+
+.night:hover {
+  background: #2a2a3c;
+}
+
+.night[data-selected] {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.night input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+.night:has(input:focus-visible) {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.nightTop {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.nightBottom {
+  font-size: 13px;
+  line-height: 1.2;
+  opacity: 0.66;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px clamp(16px, 2vw, 30px) 11px;
+  background: var(--ink);
+  color: var(--butter);
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(26px, 2.7vw, 38px);
+  line-height: 1;
+  transition: background 0.16s, color 0.16s;
+}
+
+.submit svg {
+  width: 40px;
+  transition: transform 0.3s var(--ease);
+}
+
+.submit:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.submit:hover svg {
+  transform: translateX(6px);
+}
+
+@media (max-width: 900px) {
+  .board {
+    --tile-h: calc((100vw - 2 * var(--gutter)) / 7.115);
+    gap: 18px;
+  }
+
+  .line {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+
+  .phrase {
+    font-size: clamp(56px, 16vw, 104px);
+  }
+
+  .controls {
+    justify-content: flex-start;
+  }
+
+  .nights {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .night {
+    flex: 1 0 68px;
+    min-width: 68px;
+  }
+
+  .submit {
+    width: 100%;
+    justify-content: space-between;
+    padding-block: 14px;
+  }
+
+  .picker {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 56vh;
+    overflow-y: auto;
+  }
+}

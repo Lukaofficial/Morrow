@@ -1,0 +1,92 @@
+/*
+  Set --tile-h on any ancestor and the row scales from it. The proportions are
+  taken from Solari boards: tall, narrow, with a hairline gap at the hinge.
+*/
+
+.row {
+  --tile-w: calc(var(--tile-h) * 0.68);
+  --flip: 72ms;
+  display: inline-flex;
+  gap: calc(var(--tile-h) * 0.035);
+  font-family: var(--font-condensed), var(--display);
+  font-weight: 700;
+  color: var(--flap-ink, #f4efe2);
+  user-select: none;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  flex: none;
+  width: var(--tile-w);
+  height: var(--tile-h);
+  font-size: calc(var(--tile-h) * 0.76);
+  line-height: var(--tile-h);
+  text-align: center;
+  perspective: calc(var(--tile-h) * 4);
+  border-radius: calc(var(--tile-h) * 0.035);
+  background: #050509;
+}
+
+.half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: calc(50% - 0.5px);
+  overflow: hidden;
+  background: var(--flap-face, #1b1b27);
+}
+
+.half > span {
+  display: block;
+  height: var(--tile-h);
+}
+
+.top {
+  top: 0;
+  border-radius: calc(var(--tile-h) * 0.035) calc(var(--tile-h) * 0.035) 0 0;
+  /* The upper leaf catches a little more light than the lower one. */
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+.bottom {
+  bottom: 0;
+  background: var(--flap-face-low, #16161f);
+  border-radius: 0 0 calc(var(--tile-h) * 0.035) calc(var(--tile-h) * 0.035);
+}
+
+.bottom > span {
+  transform: translateY(calc(var(--tile-h) * -0.5 - 0.5px));
+}
+
+.falling {
+  transform-origin: 50% calc(100% + 0.5px);
+  backface-visibility: hidden;
+  animation: fall var(--flip) cubic-bezier(0.45, 0, 1, 0.6) both;
+}
+
+.landing {
+  transform-origin: 50% -0.5px;
+  backface-visibility: hidden;
+  animation: land var(--flip) cubic-bezier(0, 0.5, 0.4, 1) var(--flip) both;
+}
+
+@keyframes fall {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(-90deg);
+    filter: brightness(0.55);
+  }
+}
+
+@keyframes land {
+  from {
+    transform: rotateX(90deg);
+    filter: brightness(0.6);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}

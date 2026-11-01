@@ -1,0 +1,24 @@
+.title {
+  font-family: var(--display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+
+.route {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 58px;
+  text-transform: uppercase;
+}
+
+.small {
+  font-family: var(--font-condensed);
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.grain {
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}

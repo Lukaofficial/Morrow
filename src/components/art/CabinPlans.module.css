@@ -1,0 +1,71 @@
+.plan {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  color: var(--ink);
+}
+
+.wall {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 6;
+}
+
+.window rect {
+  fill: var(--panel, #fff);
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.window path {
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.furniture rect,
+.furniture circle,
+.furniture path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.hatch {
+  stroke-width: 1 !important;
+}
+
+.upper {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.door {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.curtain {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.dim path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.dimGap {
+  fill: var(--panel, #fff);
+}
+
+.dim text {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 20px;
+  fill: currentColor;
+}

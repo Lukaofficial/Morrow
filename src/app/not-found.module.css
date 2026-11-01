@@ -1,0 +1,36 @@
+.page {
+  min-height: 100svh;
+  background: var(--ink);
+  color: var(--paper);
+  --focus: var(--butter);
+}
+
+.main {
+  display: grid;
+  gap: clamp(20px, 3vw, 40px);
+  padding-top: clamp(16px, 4vw, 64px);
+  justify-items: start;
+}
+
+.board {
+  --tile-h: min(calc((100vw - 2 * var(--gutter) - 20px) / 10 / 0.72), 130px);
+  display: grid;
+  gap: 8px;
+}
+
+.text {
+  max-width: 48ch;
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.28;
+}
+
+.link {
+  padding: 10px 20px 11px;
+  background: var(--butter);
+  color: var(--ink);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.1;
+}

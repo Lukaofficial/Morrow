@@ -1,0 +1,161 @@
+.section {
+  background: var(--ultra);
+  color: var(--paper);
+  padding-block: clamp(56px, 7vw, 112px);
+  overflow: hidden;
+  --focus: var(--butter);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 3fr) minmax(0, 10fr);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: start;
+}
+
+.title {
+  font-size: clamp(56px, 7.6vw, 128px);
+  color: var(--butter);
+  margin-bottom: clamp(24px, 3vw, 44px);
+}
+
+.legend {
+  display: grid;
+}
+
+.legendItem {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 12px;
+  padding: 10px 0 11px;
+  border-top: 1px solid rgb(246 241 229 / 0.3);
+  transition: opacity 0.2s, padding-left 0.3s var(--ease);
+}
+
+.legendItem:hover {
+  padding-left: 8px;
+}
+
+.legendItem[data-dim] {
+  opacity: 0.45;
+}
+
+.swatch {
+  grid-row: span 2;
+  height: 9px;
+  margin-top: 10px;
+}
+
+.legendName {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: clamp(21px, 1.8vw, 26px);
+  line-height: 1.1;
+}
+
+.legendEnds {
+  font-size: 15px;
+  line-height: 1.25;
+  opacity: 0.78;
+}
+
+.map {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.track {
+  fill: none;
+  stroke-width: 9;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.map[data-drawn] .track {
+  animation: draw 1.5s var(--ease) calc(var(--i) * 110ms) forwards;
+}
+
+.track[data-dim] {
+  opacity: 0.16;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.node {
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+
+.map[data-drawn] .node {
+  animation: appear 0.4s linear 0.9s forwards;
+}
+
+.node[data-dim] {
+  opacity: 0.25 !important;
+  animation: none !important;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+.dot {
+  fill: var(--ultra);
+  stroke: var(--paper);
+  stroke-width: 4;
+}
+
+.dot[data-big] {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 5;
+}
+
+.label {
+  fill: var(--paper);
+  font-family: var(--font-condensed);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.label[data-big] {
+  font-weight: 800;
+  font-size: 34px;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .label {
+    font-size: 30px;
+  }
+
+  .label[data-big] {
+    font-size: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    stroke-dashoffset: 0;
+  }
+
+  .node {
+    opacity: 1;
+  }
+}

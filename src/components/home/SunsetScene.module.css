@@ -1,0 +1,28 @@
+/* The first bit of movement on the page is the train pulling out as you scroll. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sun {
+      animation: sink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 90vh;
+    }
+
+    .train {
+      animation: pull-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 110vh;
+    }
+  }
+}
+
+@keyframes sink {
+  to {
+    transform: translateY(150px);
+  }
+}
+
+@keyframes pull-out {
+  to {
+    transform: translateX(520px);
+  }
+}

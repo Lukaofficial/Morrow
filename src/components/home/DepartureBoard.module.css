@@ -1,0 +1,118 @@
+.section {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: clamp(48px, 7vw, 104px) clamp(56px, 8vw, 120px);
+  --focus: var(--butter);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 34ch);
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px 48px;
+  margin-bottom: clamp(20px, 3vw, 40px);
+}
+
+.title {
+  font-size: clamp(64px, 11vw, 176px);
+  color: var(--butter);
+}
+
+.note {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.32;
+  padding-bottom: 0.5em;
+}
+
+/* 48 tiles and 5 gaps have to fit across the frame at every width. */
+.frame {
+  --tile-h: clamp(20px, calc((100vw - 2 * var(--gutter) - 64px) / 37), 40px);
+  background: #08080f;
+  padding: clamp(10px, 1.4vw, 20px);
+  box-shadow: inset 0 0 0 1px #24243a;
+}
+
+.labels,
+.row {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.labels {
+  font-family: var(--font-condensed);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: #8d8da3;
+  padding-bottom: 8px;
+}
+
+.labels span {
+  width: 0;
+  white-space: nowrap;
+}
+
+/* Header cells need the same width as the column of tiles under them. */
+.labels .cTime {
+  width: calc(var(--tile-h) * 0.715 * 5);
+}
+.labels .cTo,
+.labels .cFrom,
+.labels .cStatus {
+  width: calc(var(--tile-h) * 0.715 * 10);
+}
+.labels .cLine {
+  width: calc(var(--tile-h) * 0.715 * 11);
+}
+.labels .cPlat {
+  width: calc(var(--tile-h) * 0.715 * 2);
+}
+
+.rows {
+  display: grid;
+  gap: calc(var(--tile-h) * 0.1);
+}
+
+.row {
+  position: relative;
+  line-height: 0;
+  transition: opacity 0.2s;
+}
+
+.row:hover::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--tile-h) * -0.05) calc(clamp(10px, 1.4vw, 20px) * -1);
+  border-block: 1px solid var(--butter);
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .frame {
+    --tile-h: clamp(16px, calc((100vw - 2 * var(--gutter) - 44px) / 21), 34px);
+  }
+
+  .cFrom,
+  .cLine {
+    display: none !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .frame {
+    --tile-h: calc((100vw - 2 * var(--gutter) - 28px) / 18.8);
+    padding: 10px;
+  }
+
+  .cPlat {
+    display: none !important;
+  }
+}
